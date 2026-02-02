@@ -3,29 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <title>LA TÂCHE</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .app {
+      background: #020617;
+      padding: 30px;
+      border-radius: 12px;
+      width: 320px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.6);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      margin-bottom: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #38bdf8;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 15px;
+    }
+
+    li {
+      background: #1e293b;
+      padding: 8px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    li span {
+      cursor: pointer;
+      color: #f87171;
+    }
+  </style>
 </head>
 <body>
 
-  <h1>LA TÂCHE</h1>
+  <div class="app">
+    <h1>LA TÂCHE</h1>
 
-  <p>
-    LA TÂCHE est un site web qui transforme votre liste de tâches
-    en assistant intelligent pour vous aider à savoir quoi faire en priorité.
-  </p>
+    <input id="taskInput" placeholder="Nouvelle tâche..." />
+    <button onclick="addTask()">Ajouter</button>
 
-  <h2>Fonctionnalités</h2>
-  <ul>
-    <li>Gestion de tâches</li>
-    <li>Priorisation intelligente</li>
-    <li>Interface simple et rapide</li>
-  </ul>
+    <ul id="taskList"></ul>
+  </div>
 
-  <h2>Technologies</h2>
-  <ul>
-    <li>HTML</li>
-    <li>CSS</li>
-    <li>JavaScript</li>
-  </ul>
+  <script>
+    function addTask() {
+      const input = document.getElementById("taskInput");
+      const text = input.value.trim();
+      if (!text) return;
+
+      const li = document.createElement("li");
+      li.innerHTML = text + ' <span onclick="this.parentElement.remove()">✖</span>';
+
+      document.getElementById("taskList").appendChild(li);
+      input.value = "";
+    }
+  </script>
 
 </body>
 </html>
